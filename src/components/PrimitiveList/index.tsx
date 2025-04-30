@@ -5,7 +5,7 @@ import { Primitive } from "../PrimitiveMesh/types";
 import { AddPrimitiveDialog } from "./AddPrimitiveDialog";
 
 
-export const PrimitiveList = ({ 
+const PrimitiveList = ({ 
   primitives,
   selectedId,
   onAddPrimitives,
@@ -80,3 +80,5 @@ export const PrimitiveList = ({
     </div>
   );
 };
+
+export default PrimitiveList

@@ -87,7 +87,7 @@ const PyramidPrimitive = ({ primitive }: { primitive: Primitive }) => {
   )
 }
 
-export const Scene = ({ 
+const Scene = ({ 
   primitives,
   onPrimitiveClick 
 }: {
@@ -120,3 +120,4 @@ export const Scene = ({
     </Canvas>
   )
 }
+export default Scene

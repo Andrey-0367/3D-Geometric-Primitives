@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { Primitive } from "./components/PrimitiveMesh/types";
-import { PrimitiveList } from "./components/PrimitiveList";
-import { Scene } from "./components/Scene";
+import { useState } from 'react'
+import { Primitive } from '../src/components/PrimitiveMesh/types';
+import PrimitiveList from '../src/components/PrimitiveList';
+import Scene from '../src/components/Scene';
 
 
-export default function PrimitiveViewer() {
-  const [primitives, setPrimitives] = useState<Primitive[]>([]);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+export default function HomePage() {
+  const [primitives, setPrimitives] = useState<Primitive[]>([])
+  const [selectedId, setSelectedId] = useState<string | null>(null)
 
   const handleAddPrimitives = (newPrimitives: Primitive[]) => {
     setPrimitives([...primitives, ...newPrimitives]);

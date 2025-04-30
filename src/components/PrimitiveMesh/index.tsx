@@ -2,7 +2,7 @@ import { BoxGeometry, MeshBasicMaterial, BufferGeometry, BufferAttribute } from 
 import { Primitive } from "./types";
 
 
-export const PrimitiveMesh = ({ primitive, onClick }: { primitive: Primitive; onClick: () => void }) => {
+const PrimitiveMesh = ({ primitive, onClick }: { primitive: Primitive; onClick: () => void }) => {
   let geometry;
   
   if (primitive.type === "box") {
@@ -33,3 +33,4 @@ export const PrimitiveMesh = ({ primitive, onClick }: { primitive: Primitive; on
     />
   );
 };
+export default PrimitiveMesh
