@@ -1,12 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/3D-Geometric-Primitives',
-  output: 'export', 
-  distDir: 'out', 
+  basePath: process.env.NODE_ENV === 'production' ? '/3D-Geometric-Primitives' : '',
+  output: 'export',
+  distDir: 'out',
   images: {
-    unoptimized: true, 
+    unoptimized: true,
   },
-  trailingSlash: true, 
+  trailingSlash: true,
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'three/examples/jsm/controls/OrbitControls': 'three/examples/jsm/controls/OrbitControls.js'
+    };
+    return config;
+  }
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -5,6 +5,8 @@
       "dom.iterable",
       "esnext"
     ],
+    "typeRoots": ["./node_modules/@types", "./types"],
+    "types": ["three"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,

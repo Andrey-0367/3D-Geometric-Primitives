@@ -1,8 +1,8 @@
 "use strict";
 (() => {
 var exports = {};
-exports.id = 405;
-exports.ids = [405,888,660];
+exports.id = 818;
+exports.ids = [818,888,660];
 exports.modules = {
 
 /***/ 692:
@@ -96,206 +96,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(893);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _react_three_fiber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(784);
-/* harmony import */ var _react_three_fiber__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_react_three_fiber__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(949);
-/* harmony import */ var _react_three_drei__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(165);
-/* harmony import */ var _react_three_drei__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_react_three_drei__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(870);
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_mui_material__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _mui_icons_material_Add__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(146);
-/* harmony import */ var _mui_icons_material_Add__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_mui_icons_material_Add__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _mui_icons_material_Clear__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(653);
-/* harmony import */ var _mui_icons_material_Clear__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_mui_icons_material_Clear__WEBPACK_IMPORTED_MODULE_7__);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([three__WEBPACK_IMPORTED_MODULE_3__]);
-three__WEBPACK_IMPORTED_MODULE_3__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+/* harmony import */ var _components_PrimitiveList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(989);
+/* harmony import */ var _components_Scene__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(120);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_Scene__WEBPACK_IMPORTED_MODULE_3__]);
+_components_Scene__WEBPACK_IMPORTED_MODULE_3__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 
 
 
 
-
-
-
-
-
-const PyramidGeometry = ()=>{
-    const geometry = new three__WEBPACK_IMPORTED_MODULE_3__.BufferGeometry();
-    const vertices = new Float32Array([
-        // Base
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        1,
-        0,
-        1,
-        0,
-        0,
-        1,
-        // Apex
-        0.5,
-        1,
-        0.5
-    ]);
-    const indices = [
-        // Base
-        0,
-        1,
-        2,
-        0,
-        2,
-        3,
-        // Sides
-        0,
-        1,
-        4,
-        1,
-        2,
-        4,
-        2,
-        3,
-        4,
-        3,
-        0,
-        4
-    ];
-    geometry.setIndex(indices);
-    geometry.setAttribute("position", new three__WEBPACK_IMPORTED_MODULE_3__.BufferAttribute(vertices, 3));
-    geometry.computeVertexNormals();
-    return geometry;
-};
-const PrimitiveMesh = ({ primitive, onClick })=>{
-    const meshRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
-    const geometry = primitive.type === "box" ? new three__WEBPACK_IMPORTED_MODULE_3__.BoxGeometry(...primitive.size) : PyramidGeometry();
-    (0,_react_three_fiber__WEBPACK_IMPORTED_MODULE_2__.useFrame)(()=>{
-        if (meshRef.current) {
-            meshRef.current.rotation.y += 0.005;
-        }
-    });
-    if (primitive.type === "box" && primitive.faceColors) {
-        const materials = primitive.faceColors.map((color)=>new three__WEBPACK_IMPORTED_MODULE_3__.MeshBasicMaterial({
-                color,
-                side: three__WEBPACK_IMPORTED_MODULE_3__.DoubleSide,
-                wireframe: primitive.selected,
-                wireframeLinewidth: 2
-            }));
-        return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("mesh", {
-            ref: meshRef,
-            position: primitive.position,
-            geometry: geometry,
-            material: materials,
-            onClick: (e)=>{
-                e.stopPropagation();
-                onClick();
-            }
-        });
-    }
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("mesh", {
-        ref: meshRef,
-        position: primitive.position,
-        geometry: geometry,
-        onClick: (e)=>{
-            e.stopPropagation();
-            onClick();
-        },
-        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meshBasicMaterial", {
-            color: primitive.color,
-            wireframe: primitive.selected,
-            wireframeLinewidth: 2
-        })
-    });
-};
-const Scene = ({ primitives, onPrimitiveClick })=>{
-    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_react_three_fiber__WEBPACK_IMPORTED_MODULE_2__.Canvas, {
-        camera: {
-            position: [
-                5,
-                5,
-                5
-            ],
-            fov: 75
-        },
-        children: [
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ambientLight", {
-                intensity: 0.5
-            }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("pointLight", {
-                position: [
-                    10,
-                    10,
-                    10
-                ]
-            }),
-            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_react_three_drei__WEBPACK_IMPORTED_MODULE_4__.OrbitControls, {}),
-            primitives.map((primitive)=>/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(PrimitiveMesh, {
-                    primitive: primitive,
-                    onClick: ()=>onPrimitiveClick(primitive.id)
-                }, primitive.id))
-        ]
-    });
-};
-const getRandomColor = ()=>`#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`;
-const getRandomPosition = ()=>[
-        Math.random() * 6 - 3,
-        Math.random() * 6 - 3,
-        Math.random() * 6 - 3
-    ];
 function PrimitiveViewer() {
     const [primitives, setPrimitives] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
-    const [openDialog, setOpenDialog] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
-    const [selectedPrimitive, setSelectedPrimitive] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
-    const [primitiveType, setPrimitiveType] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("box");
-    const [width, setWidth] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
-    const [height, setHeight] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
-    const [depth, setDepth] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
-    const [count, setCount] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
-    const [randomFaceColors, setRandomFaceColors] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
-    const handleAddPrimitives = ()=>{
-        const newPrimitives = [];
-        for(let i = 0; i < count; i++){
-            const id = `${primitiveType}-${Date.now()}-${i}`;
-            const color = getRandomColor();
-            const position = getRandomPosition();
-            const size = [
-                width,
-                height,
-                depth
-            ];
-            let faceColors;
-            if (randomFaceColors) {
-                faceColors = Array(primitiveType === "box" ? 6 : 5).fill(0).map(()=>getRandomColor());
-            }
-            newPrimitives.push({
-                id,
-                type: primitiveType,
-                position,
-                size,
-                color,
-                faceColors,
-                selected: false
-            });
-        }
+    const [selectedId, setSelectedId] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
+    const handleAddPrimitives = (newPrimitives)=>{
         setPrimitives([
             ...primitives,
             ...newPrimitives
         ]);
-        setOpenDialog(false);
     };
-    const handleClear = ()=>{
+    const handleClearAll = ()=>{
         setPrimitives([]);
-        setSelectedPrimitive(null);
+        setSelectedId(null);
     };
-    const handlePrimitiveClick = (id)=>{
+    const handleSelectPrimitive = (id)=>{
+        setSelectedId(id);
         setPrimitives(primitives.map((p)=>({
                 ...p,
                 selected: p.id === id
             })));
-        setSelectedPrimitive(id);
-    };
-    const handleListItemClick = (id)=>{
-        handlePrimitiveClick(id);
     };
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         style: {
@@ -303,184 +130,21 @@ function PrimitiveViewer() {
             height: "100vh"
         },
         children: [
-            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                style: {
-                    width: "300px",
-                    padding: "16px",
-                    borderRight: "1px solid #ddd"
-                },
-                children: [
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.Typography, {
-                        variant: "h6",
-                        gutterBottom: true,
-                        children: "Geometric Primitives"
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.Button, {
-                        variant: "contained",
-                        startIcon: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((_mui_icons_material_Add__WEBPACK_IMPORTED_MODULE_6___default()), {}),
-                        onClick: ()=>setOpenDialog(true),
-                        fullWidth: true,
-                        sx: {
-                            mb: 2
-                        },
-                        children: "Add Primitives"
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.Button, {
-                        variant: "outlined",
-                        startIcon: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((_mui_icons_material_Clear__WEBPACK_IMPORTED_MODULE_7___default()), {}),
-                        onClick: handleClear,
-                        fullWidth: true,
-                        sx: {
-                            mb: 2
-                        },
-                        children: "Clear All"
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.Paper, {
-                        sx: {
-                            height: "calc(100% - 120px)",
-                            overflow: "auto"
-                        },
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.List, {
-                            children: primitives.map((primitive)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_5__.ListItem, {
-                                    onClick: ()=>handleListItemClick(primitive.id),
-                                    sx: {
-                                        cursor: "pointer",
-                                        "&:hover": {
-                                            backgroundColor: "#f5f5f5"
-                                        },
-                                        backgroundColor: primitive.id === selectedPrimitive ? "action.selected" : undefined
-                                    },
-                                    children: [
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.ListItemAvatar, {
-                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.Avatar, {
-                                                sx: {
-                                                    bgcolor: primitive.color
-                                                }
-                                            })
-                                        }),
-                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.ListItemText, {
-                                            primary: `${primitive.type} (${primitive.size.join(" x ")})`,
-                                            secondary: `Position: [${primitive.position.map((p)=>p.toFixed(2)).join(", ")}]`
-                                        })
-                                    ]
-                                }, primitive.id))
-                        })
-                    })
-                ]
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_PrimitiveList__WEBPACK_IMPORTED_MODULE_2__.PrimitiveList, {
+                primitives: primitives,
+                selectedId: selectedId,
+                onAddPrimitives: handleAddPrimitives,
+                onClearAll: handleClearAll,
+                onSelectPrimitive: handleSelectPrimitive
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                 style: {
                     flex: 1
                 },
-                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Scene, {
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Scene__WEBPACK_IMPORTED_MODULE_3__.Scene, {
                     primitives: primitives,
-                    onPrimitiveClick: handlePrimitiveClick
+                    onPrimitiveClick: handleSelectPrimitive
                 })
-            }),
-            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_5__.Dialog, {
-                open: openDialog,
-                onClose: ()=>setOpenDialog(false),
-                children: [
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.DialogTitle, {
-                        children: "Add New Primitives"
-                    }),
-                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_5__.DialogContent, {
-                        children: [
-                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_5__.Select, {
-                                value: primitiveType,
-                                onChange: (e)=>setPrimitiveType(e.target.value),
-                                fullWidth: true,
-                                sx: {
-                                    mb: 2
-                                },
-                                children: [
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.MenuItem, {
-                                        value: "box",
-                                        children: "Box"
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.MenuItem, {
-                                        value: "pyramid",
-                                        children: "Pyramid"
-                                    })
-                                ]
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.TextField, {
-                                label: "Width",
-                                type: "number",
-                                value: width,
-                                onChange: (e)=>setWidth(parseFloat(e.target.value)),
-                                fullWidth: true,
-                                sx: {
-                                    mb: 2
-                                }
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.TextField, {
-                                label: "Height",
-                                type: "number",
-                                value: height,
-                                onChange: (e)=>setHeight(parseFloat(e.target.value)),
-                                fullWidth: true,
-                                sx: {
-                                    mb: 2
-                                }
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.TextField, {
-                                label: "Depth",
-                                type: "number",
-                                value: depth,
-                                onChange: (e)=>setDepth(parseFloat(e.target.value)),
-                                fullWidth: true,
-                                sx: {
-                                    mb: 2
-                                }
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.TextField, {
-                                label: "Count",
-                                type: "number",
-                                value: count,
-                                onChange: (e)=>setCount(parseInt(e.target.value)),
-                                fullWidth: true,
-                                sx: {
-                                    mb: 2
-                                }
-                            }),
-                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                style: {
-                                    display: "flex",
-                                    alignItems: "center"
-                                },
-                                children: [
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
-                                        type: "checkbox",
-                                        id: "randomFaceColors",
-                                        checked: randomFaceColors,
-                                        onChange: (e)=>setRandomFaceColors(e.target.checked),
-                                        style: {
-                                            marginRight: "8px"
-                                        }
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
-                                        htmlFor: "randomFaceColors",
-                                        children: "Random colors for each face"
-                                    })
-                                ]
-                            })
-                        ]
-                    }),
-                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_5__.DialogActions, {
-                        children: [
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.Button, {
-                                onClick: ()=>setOpenDialog(false),
-                                children: "Cancel"
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_mui_material__WEBPACK_IMPORTED_MODULE_5__.Button, {
-                                onClick: handleAddPrimitives,
-                                variant: "contained",
-                                children: "Add"
-                            })
-                        ]
-                    })
-                ]
             })
         ]
     });
@@ -509,13 +173,6 @@ module.exports = require("@mui/icons-material/Clear");
 /***/ ((module) => {
 
 module.exports = require("@mui/material");
-
-/***/ }),
-
-/***/ 165:
-/***/ ((module) => {
-
-module.exports = require("@react-three/drei");
 
 /***/ }),
 
@@ -610,7 +267,7 @@ module.exports = import("three");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [940,35,855,893], () => (__webpack_exec__(692)));
+var __webpack_exports__ = __webpack_require__.X(0, [940,35,855,893,365,400,120,989], () => (__webpack_exec__(692)));
 module.exports = __webpack_exports__;
 
 })();
